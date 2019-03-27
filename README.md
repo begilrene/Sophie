@@ -1,1 +1,1 @@
-# Sophie: Emotional Complex
+# Sophie: Emotion Complex
