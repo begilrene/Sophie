@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this; //Only one game manager. If multiple scripts, only one instance.
+        GameManager.instance = this; //Only one game manager. If multiple scripts, only one instance.
 
         scoreText.text = "Score: 0";
         currentMultiplier = 1;

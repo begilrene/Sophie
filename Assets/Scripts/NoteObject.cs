@@ -11,7 +11,7 @@ public class NoteObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //GameManager.Instantiate();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class NoteObject : MonoBehaviour
             {
                 gameObject.SetActive(false);
 
-                GameManager.instance.NoteHit(); //If pressed (correc ttiming), you hit correctly.
+                GameManager.instance.NoteHit(); //If pressed (correct timing), you hit correctly.
             }
         }
     }
