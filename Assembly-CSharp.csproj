@@ -56,11 +56,11 @@
      <Compile Include="Assets\Scripts\EffectObject.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\NoteObject.cs" />
- <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/Robert Gil/Documents/Sophie/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
- </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>C:/Users/Robert Gil/Documents/Sophie/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.StandardEvents">
+ <HintPath>C:/Users/Robert Gil/Documents/Sophie/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
