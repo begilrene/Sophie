@@ -24,15 +24,6 @@ public class GameManager : MonoBehaviour
 
     public Text scoreText; //Accessor for the Text
     public Text multiplierText; // "
-
-    public float totalNotes; //Amount of notes in specific song
-    public float normalHits;
-    public float goodHits;
-    public float perfectHits;
-    public float missedHits;
-
-    public GameObject resultsScreen;
-    public Text percentHitText, normalsText, goodsText, perfectsText, missesText, rankText, finalScoreText;
     
     // Start is called before the first frame update
     void Start()
@@ -41,9 +32,6 @@ public class GameManager : MonoBehaviour
 
         scoreText.text = "Score: 0";
         currentMultiplier = 1;
-
-        totalNotes = FindObjectsOfType<NoteObject>().Length;
-        Debug.Log(totalNotes);
     }
 
     // Update is called once per frame
@@ -58,51 +46,6 @@ public class GameManager : MonoBehaviour
 
                 theMusic.Play(); // Start the music.
             }
-        }
-        else //if music has finished playing.
-        {
-            if(!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
-            {
-                resultsScreen.SetActive(true);
-                normalsText.text = "" + normalHits;
-                goodsText.text = "" + goodHits;
-                perfectsText.text = perfectHits.ToString();
-                missesText.text = missedHits.ToString();
-
-                float totalHits = normalHits + goodHits + perfectHits;
-                float totalHitPercentage = (totalHits / totalNotes) * 100;
-
-                percentHitText.text = totalHitPercentage.ToString("F2") + " %";
-
-                string rankVal = "F";
-
-                if (totalHitPercentage > 40)
-                {
-                    rankVal = "D";
-                    if(totalHitPercentage > 55)
-                    {
-                        rankVal = "C";
-                        if(totalHitPercentage > 70)
-                        {
-                            rankVal = "B";
-                            if(totalHitPercentage > 85)
-                            {
-                                rankVal = "A";
-                                if(totalHitPercentage > 95)
-                                {
-                                    rankVal = "S";
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-                rankText.text = rankVal;
-                finalScoreText.text = currentScore.ToString();
-
-            }
-
         }
     }
 
@@ -131,21 +74,18 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerNote * currentMultiplier;
         NoteHit();
-        normalHits++;
     }
 
     public void GoodHit()
     {
         currentScore += scorePerGoodNote * currentMultiplier;
         NoteHit();
-        goodHits++;
     }
 
     public void PerfectHit()
     {
         currentScore += scorePerPerfectNote * currentMultiplier;
         NoteHit();
-        perfectHits++;
     }
 
     public void NoteMissed()
@@ -153,7 +93,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Missed Note");
         currentMultiplier = 1;
         multiplierTracker = 0;
-        missedHits++;
+
         multiplierText.text = "Multiplier: X" + currentMultiplier;
     }
 }
