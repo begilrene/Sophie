@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/Surprise.unity
+  isLoaded: 1
+  isActive: 1
