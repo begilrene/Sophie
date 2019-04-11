@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float totalNotes, normalHits, goodHits, perfectHits, missedHits;
 
     public GameObject resultsScreen;
+    public GameObject failedScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(missedHits > (totalNotes/2))
+        {
+            theBS.hasEnded = true;
+            theMusic.Stop();
+            if(!failedScreen.activeInHierarchy)
+            {
+                failedScreen.SetActive(true);
+            }
+
+        }
         if (!startPlaying) //If music hasn't started
         {
             if (Input.anyKeyDown) // if user has press something
@@ -55,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if(!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
+            if(!theMusic.isPlaying && !resultsScreen.activeInHierarchy && !failedScreen.activeInHierarchy)
             {
                 theBS.hasEnded = true;
                 resultsScreen.SetActive(true);
