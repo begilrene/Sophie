@@ -1558,6 +1558,7 @@ MonoBehaviour:
   perfectHits: 0
   missedHits: 0
   resultsScreen: {fileID: 766832845}
+  failedScreen: {fileID: 1894841108}
 --- !u!4 &1064770838
 Transform:
   m_ObjectHideFlags: 0
