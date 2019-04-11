@@ -7,6 +7,7 @@ public class BeatScroller : MonoBehaviour
 
     public float beatTempo; //how fast arrows fall down
     public bool hasStarted; //Press a button to make things fall down the screen.
+    public bool hasEnded; // Check if song has ended through any means.
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class BeatScroller : MonoBehaviour
                 hasStarted = true;
             }
         }
-        else
+        else if(!hasEnded)
         {
             transform.position -= new Vector3(0f, beatTempo * Time.deltaTime, 0f);
         }
