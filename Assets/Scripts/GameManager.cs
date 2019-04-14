@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (health <= 0)
             health = 0;
         healthBar.setSize((float)health);
-        if(missedHits > (totalNotes/2) || (health == 0 || health <= 0))
+        if((health == 0 || health <= 0))//missedHits > (totalNotes/2) || 
         {
             theBS.hasEnded = true;
             theMusic.Stop();
