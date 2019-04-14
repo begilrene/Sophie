@@ -19,7 +19,7 @@ public class SpectrumKernel : MonoBehaviour {
 
 	// Allow to check only one time the channels
 	void Update () {
-        //if (bs.hasStarted)
+       /// if (bs.hasStarted)
         {
             AudioListener.GetSpectrumData(spects, 0, FFTWindow.BlackmanHarris);
         }
