@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main_Menu_Scene.unity
+    guid: 2da2f254b0d4bcb4dbeda61bdd3ba121
+  - enabled: 1
+    path: Assets/Sophie Assets/Stages/Surprise.unity
+    guid: 473cae81c1f60b3479da5d656d311455
   m_configObjects: {}
