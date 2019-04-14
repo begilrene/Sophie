@@ -5,6 +5,10 @@ using UnityEngine.UI; //Accessing UI
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private HealthBar healthBar;
+    public double health = 0.1;
+    
+
     public AudioSource theMusic; //Music File
 
     public bool startPlaying; //Starts the music
@@ -33,6 +37,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthBar.setSize((float) health);
+
+        
         GameManager.instance = this; //Only one game manager. If multiple scripts, only one instance.
 
         scoreText.text = "Score: 0";
@@ -44,7 +51,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(missedHits > (totalNotes/2))
+        if (health <= 0)
+            health = 0;
+        healthBar.setSize((float)health);
+        if(missedHits > (totalNotes/2) || (health == 0 || health <= 0))
         {
             theBS.hasEnded = true;
             theMusic.Stop();
@@ -124,7 +134,7 @@ public class GameManager : MonoBehaviour
                 currentMultiplier++;
             }
         }
-        theMusic.Stop();
+       // theMusic.Stop(); //DEBUG
         multiplierText.text = "Multiplier: X" + currentMultiplier;
         /*
         currentScore += scorePerNote * currentMultiplier;
@@ -136,6 +146,16 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerNote * currentMultiplier;
         NoteHit();
+        if(health <= .95)
+        {
+            health += .05;
+            healthBar.setSize((float)health);
+        }
+        else if(health > .95 && health != 1)
+        {
+            health = 1;
+            healthBar.setSize((float)health);
+        }
         normalHits++;
     }
 
@@ -143,6 +163,14 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerGoodNote * currentMultiplier;
         NoteHit();
+        if (health <= .90)
+        {
+            health += .1;
+        }
+        else if (health > .90 && health != 1)
+        {
+            health = 1;
+        }
         goodHits++;
     }
 
@@ -150,6 +178,14 @@ public class GameManager : MonoBehaviour
     {
         currentScore += scorePerPerfectNote * currentMultiplier;
         NoteHit();
+        if (health <= .85)
+        {
+            health += .15;
+        }
+        else if (health > .85 && health != 1)
+        {
+            health = 1;
+        }
         perfectHits++;
     }
 
@@ -157,8 +193,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Missed Note");
         currentMultiplier = 1;
-        multiplierTracker = 0;
-
+        multiplierTracker = 0;        
+        health = health - .05;
         multiplierText.text = "Multiplier: X" + currentMultiplier;
         missedHits++;
     }
