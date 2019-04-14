@@ -10,6 +10,9 @@ public class ButtonController : MonoBehaviour
 
     public KeyCode keyToPress;
 
+    public GameObject missedEffect;
+    public bool somethingInside;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +25,27 @@ public class ButtonController : MonoBehaviour
         if(Input.GetKeyDown(keyToPress))
         {
             theSR.sprite = pressedImage;
+            if(!somethingInside)
+            {
+                Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
+                GameManager.instance.NoteMissed();
+            }
+
         }
 
         if(Input.GetKeyUp(keyToPress))
         {
             theSR.sprite = defaultImage;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        somethingInside = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        somethingInside = false;
     }
 }
