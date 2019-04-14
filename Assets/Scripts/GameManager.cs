@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.setSize((float) health);
+       // healthBar.setSize((float) health);
 
         
         GameManager.instance = this; //Only one game manager. If multiple scripts, only one instance.

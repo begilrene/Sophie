@@ -12754,7 +12754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1374313927}
-  health: 0.5
+  health: 1
   theMusic: {fileID: 1356649716}
   startPlaying: 0
   theBS: {fileID: 1206386764}
