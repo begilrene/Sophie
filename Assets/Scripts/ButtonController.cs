@@ -10,6 +10,9 @@ public class ButtonController : MonoBehaviour
 
     public KeyCode keyToPress;
 
+    public bool createMode;
+    public GameObject theNote;
+
     public GameObject missedEffect;
     public bool somethingInside;
 
@@ -22,20 +25,27 @@ public class ButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(keyToPress))
+        if (createMode && Input.GetKeyDown(keyToPress)) // Testing create mode.
         {
-            theSR.sprite = pressedImage;
-            if(!somethingInside)
+            Instantiate(theNote, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            if (Input.GetKeyDown(keyToPress))
             {
-                Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
-                GameManager.instance.NoteMissed();
+                theSR.sprite = pressedImage;
+                if (!somethingInside)
+                {
+                   // Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
+                  //  GameManager.instance.NoteMissed();
+                }
+
             }
 
-        }
-
-        if(Input.GetKeyUp(keyToPress))
-        {
-            theSR.sprite = defaultImage;
+            if (Input.GetKeyUp(keyToPress))
+            {
+                theSR.sprite = defaultImage;
+            }
         }
     }
 

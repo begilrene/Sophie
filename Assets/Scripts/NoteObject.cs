@@ -4,33 +4,45 @@ using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
+    public BeatScroller bs;
+    Rigidbody2D rb;
+    public float speed;
+
     public bool canBePressed;
 
     public KeyCode keyToPress;
 
     public GameObject normalEffect, goodEffect, perfectEffect, missEffect;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Start()
     {
         //GameManager.Instantiate();
+        //rb.velocity = new Vector2(0, -speed);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(bs.hasStarted)
+            rb.velocity = new Vector2(0, -speed);
         if(Input.GetKeyDown(keyToPress))
         {
             if(canBePressed)
             {
                 gameObject.SetActive(false);
 
-                if (Mathf.Abs(transform.position.y) > 0.3f)
+                if (Mathf.Abs(transform.position.y) > 0.5f)
                 {
                     GameManager.instance.NormalHit();
                     Instantiate(normalEffect, transform.position, normalEffect.transform.rotation);
                     Debug.Log("Normal Hit");
                 }
-                else if (Mathf.Abs(transform.position.y) > 0.15f)
+                else if (Mathf.Abs(transform.position.y) > 0.25f)
                 {
                     Debug.Log("Good Hit");
                     Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
@@ -61,8 +73,8 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator")
         {
             canBePressed = false;
-            Instantiate(missEffect, transform.position, missEffect.transform.rotation);
-            GameManager.instance.NoteMissed(); //Missed the note.
+           // Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+         //   GameManager.instance.NoteMissed(); //Missed the note.
         }
     }
 }
