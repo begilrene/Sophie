@@ -28,35 +28,44 @@ public class NoteObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(bs.hasStarted)
-            rb.velocity = new Vector2(0, -speed);
-        if(Input.GetKeyDown(keyToPress))
+        if (bs.hasStarted)
         {
-            if(canBePressed)
+            rb.velocity = new Vector2(0, -speed);
+        }
+        if (!bs.hasEnded)
+        {
+            if (Input.GetKeyDown(keyToPress))
             {
-                gameObject.SetActive(false);
+                if (canBePressed)
+                {
+                    gameObject.SetActive(false);
 
-                if (Mathf.Abs(transform.position.y) > 0.5f)
-                {
-                    GameManager.instance.NormalHit();
-                    Instantiate(normalEffect, transform.position, normalEffect.transform.rotation);
-                    Debug.Log("Normal Hit");
+                    if (Mathf.Abs(transform.position.y) > 0.5f)
+                    {
+                        GameManager.instance.NormalHit();
+                        Instantiate(normalEffect, transform.position, normalEffect.transform.rotation);
+                        Debug.Log("Normal Hit");
+                    }
+                    else if (Mathf.Abs(transform.position.y) > 0.25f)
+                    {
+                        Debug.Log("Good Hit");
+                        Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                        GameManager.instance.GoodHit();
+                    }
+                    else
+                    {
+                        Debug.Log("PERFECT!!!");
+                        Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                        GameManager.instance.PerfectHit();
+                    }
+
+                    // GameManager.instance.NoteHit(); //If pressed (correct timing), you hit correctly.
                 }
-                else if (Mathf.Abs(transform.position.y) > 0.25f)
-                {
-                    Debug.Log("Good Hit");
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                    GameManager.instance.GoodHit();
-                }
-                else
-                {
-                    Debug.Log("PERFECT!!!");
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                    GameManager.instance.PerfectHit();
-                }
-                   
-               // GameManager.instance.NoteHit(); //If pressed (correct timing), you hit correctly.
             }
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
         }
     }
 
