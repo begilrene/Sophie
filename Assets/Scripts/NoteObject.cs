@@ -73,8 +73,8 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator")
         {
             canBePressed = false;
-           // Instantiate(missEffect, transform.position, missEffect.transform.rotation);
-         //   GameManager.instance.NoteMissed(); //Missed the note.
+            Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+            GameManager.instance.NoteMissed(); //Missed the note.
         }
     }
 }

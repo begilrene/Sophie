@@ -36,8 +36,8 @@ public class ButtonController : MonoBehaviour
                 theSR.sprite = pressedImage;
                 if (!somethingInside)
                 {
-                   // Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
-                  //  GameManager.instance.NoteMissed();
+                    Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
+                    GameManager.instance.NoteMissed();
                 }
 
             }
