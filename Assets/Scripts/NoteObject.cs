@@ -39,8 +39,7 @@ public class NoteObject : MonoBehaviour
                 if (canBePressed)
                 {
                     gameObject.SetActive(false);
-
-                    if (Mathf.Abs(transform.position.y) > 0.5f)
+                    if(Mathf.Abs(transform.position.y) > 0.5f)
                     {
                         GameManager.instance.NormalHit();
                         Instantiate(normalEffect, transform.position, normalEffect.transform.rotation);
@@ -81,7 +80,7 @@ public class NoteObject : MonoBehaviour
     {
         if (other.tag == "Activator")
         {
-            canBePressed = false;
+            canBePressed = false;   
             Instantiate(missEffect, transform.position, missEffect.transform.rotation);
             GameManager.instance.NoteMissed(); //Missed the note.
         }

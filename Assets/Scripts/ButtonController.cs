@@ -36,7 +36,8 @@ public class ButtonController : MonoBehaviour
                 theSR.sprite = pressedImage;
                 if (!somethingInside)
                 {
-                    Instantiate(missedEffect, transform.position, missedEffect.transform.rotation);
+                    Vector3 temp = new Vector3(transform.position.x, transform.position.y + 2);
+                    Instantiate(missedEffect, temp, missedEffect.transform.rotation);
                     GameManager.instance.NoteMissed();
                 }
 
@@ -51,6 +52,7 @@ public class ButtonController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        
         somethingInside = true;
     }
 
